@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+});
+
+useEffect(() => {
+  if (fontsLoaded || fontError) SplashScreen.hideAsync();
+}, [fontsLoaded, fontError]);
+
+if (!fontsLoaded && !fontError) return null;
+
+return (
+  <>
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="(tabs)" />
+      <Stack.Screen name="+not-found" />
+    </Stack>
+    <StatusBar style="light" />
+  </>
+);
+}
+
+| 'Chest'
+| 'Back'
+| 'Legs'
+| 'Shoulders'
+| 'Arms'
+| 'Core';
+
+export type Level = 'Beginner' | 'Intermediate' | 'Advanced';
+
+export interface Exercise {
+id: string;
+name: string;
+muscle: MuscleGroup;
+secondary: string[];
+equipment: string;
+level: Level;
+sets: string; // suggested sets x reps
+steps: string[];
+mistakes: string[];
+tip: string;
+image?: string; // add your own image URL or require('./assets/...')
+video?: string; // add your own video URL
+}
+
+export const exercises: Exercise[] = [
+// ---------------- CHEST ----------------
+{
+  id: 'bench-press',
+  name: 'Barbell Bench Press',
+  muscle: 'Chest',
+  secondary: ['Triceps', 'Front Delts'],
+  equipment: 'Barbell, Bench',
+  level: 'Intermediate',
+  sets: '4 x 6-10',
+  steps: [
+    'Lie on the bench with eyes under the bar, feet flat on the floor.',
+    'Grip the bar slightly wider than shoulder width.',
+    'Pull shoulder blades together and keep a slight arch in your upper back.',
+    'Lower the bar under control to your mid-chest.',
+    'Press the bar up until your arms are straight.',
+  ],
+  mistakes: [
+    'Bouncing the bar off the chest.',
+    'Flaring elbows out to 90 degrees.',
+    'Lifting hips off the bench.',
+  ],
+  tip: 'Use a spotter or safety arms when lifting heavy.',
+},
+{
+  id: 'incline-db-press',
+  name: 'Incline Dumbbell Press',
+  muscle: 'Chest',
+  secondary: ['Front Delts', 'Triceps'],
+  equipment: 'Dumbbells, Incline Bench',
+  level: 'Beginner',
+  sets: '3 x 8-12',
+  steps: [
+    'Set the bench to about 30 degrees and sit with dumbbells on your thighs.',
+    'Kick the weights up and hold them at chest level, palms forward.',
+    'Press up and slightly inward until arms are straight.',
+    'Lower slowly until you feel a stretch in the upper chest.',
+  ],
+  mistakes: [
+    'Setting the bench too steep (turns into a shoulder press).',
+    'Dropping the weights too fast.',
+  ],
+  tip: 'A 30-degree angle targets the upper chest best.',
+},
+{
+  id: 'pushup',
+  name: 'Push-Up',
+  muscle: 'Chest',
+  secondary: ['Triceps', 'Core'],
+  equipment: 'Bodyweight',
+  level: 'Beginner',
+  sets: '3 x 10-20',
+  steps: [
+    'Place hands slightly wider than shoulders, body in a straight line.',
+    'Tighten your core and glutes.',
+    'Lower your chest to just above the floor.',
+    'Push back up to the start.',
+  ],
+  mistakes: ['Sagging hips.', 'Half reps.', 'Head dropping forward.'],
+  tip: 'Too hard? Do them with hands on a bench.',
+},
+{
+  id: 'cable-fly',
+  name: 'Cable Chest Fly',
+  muscle: 'Chest',
+  secondary: ['Front Delts'],
+  equipment: 'Cable Machine',
+  level: 'Intermediate',
+  sets: '3 x 12-15',
+  steps: [
+    'Set pulleys at shoulder height and stand in the middle with a handle in each hand.',
+    'Step forward with a slight bend in your elbows.',
+    'Bring your hands together in front of your chest in a hugging motion.',
+    'Return slowly until you feel a chest stretch.',
+  ],
+  mistakes: ['Using too much weight and turning it into a press.', 'Bending and straightening the elbows.'],
+  tip: 'Squeeze the chest for one second at the middle.',
+},
+{
+  id: 'dips-chest',
+  name: 'Chest Dips',
+  muscle: 'Chest',
+  secondary: ['Triceps', 'Front Delts'],
+  equipment: 'Parallel Bars',
+  level: 'Advanced',
+  sets: '3 x 6-12',
+  steps: [
+    'Hold the bars and lift yourself with straight arms.',
+    'Lean your torso forward about 30 degrees.',
+    'Lower until your upper arms are parallel to the floor.',
+    'Push back up without locking out hard.',
+  ],
+  mistakes: ['Going too deep and stressing the shoulders.', 'Staying fully upright (shifts work to triceps).'],
+  tip: 'Stop if you feel pain in the front of the shoulder.',
+},
+
+// ---------------- BACK ----------------
+{
+  id: 'pullup',
+  name: 'Pull-Up',
+  muscle: 'Back',
+  secondary: ['Biceps', 'Rear Delts'],
+  equipment: 'Pull-Up Bar',
+  level: 'Intermediate',
+  sets: '4 x 5-10',
+  steps: [
+    'Grab the bar with an overhand grip, slightly wider than shoulders.',
+    'Hang with straight arms and shoulders pulled down.',
+    'Pull your chest toward the bar by driving elbows down.',
+    'Lower slowly to a full hang.',
+  ],
+  mistakes: ['Swinging or kicking.', 'Not lowering fully.', 'Shrugging shoulders to ears.'],
+  tip: 'Use an assisted machine or a band if you cannot do 5 reps yet.',
+},
+{
+  id: 'lat-pulldown',
+  name: 'Lat Pulldown',
+  muscle: 'Back',
+  secondary: ['Biceps'],
+  equipment: 'Cable Machine',
+  level: 'Beginner',
+  sets: '3 x 10-12',
+  steps: [
+    'Sit with thighs locked under the pad and grab the bar wider than shoulders.',
+    'Lean back slightly and keep your chest up.',
+    'Pull the bar to your upper chest.',
+    'Return slowly until your arms are straight.',
+  ],
+  mistakes: ['Pulling the bar behind the neck.', 'Leaning back too far and swinging.'],
+  tip: 'Think of pulling with your elbows, not your hands.',
+},
+{
+  id: 'barbell-row',
+  name: 'Barbell Row',
+  muscle: 'Back',
+  secondary: ['Biceps', 'Rear Delts', 'Lower Back'],
+  equipment: 'Barbell',
+  level: 'Intermediate',
+  sets: '4 x 6-10',
+  steps: [
+    'Stand with feet hip-width, hinge forward until your torso is about 45 degrees.',
+    'Grip the bar just outside your knees with a flat back.',
+    'Pull the bar to your lower ribs.',
+    'Lower with control.',
+  ],
+  mistakes: ['Rounding the lower back.', 'Using momentum from the legs.'],
+  tip: 'Keep your neck neutral and look at the floor a few feet ahead.',
+},
+{
+  id: 'seated-cable-row',
+  name: 'Seated Cable Row',
+  muscle: 'Back',
+  secondary: ['Biceps', 'Rear Delts'],
+  equipment: 'Cable Machine',
+  level: 'Beginner',
+  sets: '3 x 10-12',
+  steps: [
+    'Sit with feet on the platform and knees slightly bent.',
+    'Grab the handle and sit tall with a straight back.',
+    'Pull the handle to your stomach and squeeze your shoulder blades.',
+    'Extend your arms slowly without rounding forward.',
+  ],
+  mistakes: ['Leaning back and forth with every rep.', 'Shrugging the shoulders.'],
+  tip: 'Pause one second at the squeeze.',
+},
+{
+  id: 'deadlift',
+  name: 'Conventional Deadlift',
+  muscle: 'Back',
+  secondary: ['Glutes', 'Hamstrings', 'Traps'],
+  equipment: 'Barbell',
+  level: 'Advanced',
+  sets: '3 x 4-6',
+  steps: [
+    'Stand with the bar over mid-foot, feet hip-width.',
+    'Hinge down and grip the bar just outside your legs.',
+    'Brace your core, flatten your back, and pull the slack out of the bar.',
+    'Drive through the floor and stand up with the bar close to your legs.',
+    'Lower the bar by pushing hips back first.',
+  ],
+  mistakes: ['Rounding the back.', 'Jerking the bar off the floor.', 'Bar drifting away from the body.'],
+  tip: 'Start light and learn the hinge before adding weight.',
+},
+
+// ---------------- LEGS ----------------
+{
+  id: 'back-squat',
+  name: 'Barbell Back Squat',
+  muscle: 'Legs',
+  secondary: ['Glutes', 'Core'],
+  equipment: 'Barbell, Squat Rack',
+  level: 'Intermediate',
+  sets: '4 x 6-10',
+  steps: [
+    'Place the bar on your upper back and step out of the rack.',
+    'Feet shoulder-width, toes slightly out.',
+    'Brace your core and sit down and back until thighs are parallel or lower.',
+    'Drive up through your whole foot.',
+  ],
+  mistakes: ['Knees caving inward.', 'Heels lifting off the floor.', 'Rounding the lower back at the bottom.'],
+  tip: 'Use safety bars in the rack when training alone.',
+},
+{
+  id: 'leg-press',
+  name: 'Leg Press',
+  muscle: 'Legs',
+  secondary: ['Glutes'],
+  equipment: 'Leg Press Machine',
+  level: 'Beginner',
+  sets: '3 x 10-15',
+  steps: [
+    'Sit with your back flat against the pad and feet shoulder-width on the platform.',
+    'Release the safety and lower the platform until knees are about 90 degrees.',
+    'Press back up without locking your knees.',
+  ],
+  mistakes: ['Letting the lower back lift off the seat.', 'Locking the knees hard at the top.'],
+  tip: 'Higher foot placement works the glutes and hamstrings more.',
+},
+{
+  id: 'rdl',
+  name: 'Romanian Deadlift',
+  muscle: 'Legs',
+  secondary: ['Glutes', 'Lower Back'],
+  equipment: 'Barbell or Dumbbells',
+  level: 'Intermediate',
+  sets: '3 x 8-12',
+  steps: [
+    'Stand holding the weight at your thighs, knees slightly bent.',
+    'Push your hips back and slide the weight down your legs.',
+    'Stop when you feel a strong hamstring stretch.',
+    'Squeeze your glutes to stand back up.',
+  ],
+  mistakes: ['Rounding the back.', 'Bending the knees too much (turns into a squat).'],
+  tip: 'Keep the weight close to your legs the whole time.',
+},
+{
+  id: 'walking-lunge',
+  name: 'Walking Lunge',
+  muscle: 'Legs',
+  secondary: ['Glutes', 'Core'],
+  equipment: 'Dumbbells or Bodyweight',
+  level: 'Beginner',
+  sets: '3 x 10 per leg',
+  steps: [
+    'Stand tall holding dumbbells at your sides.',
+    'Step forward and lower until both knees are about 90 degrees.',
+    'Push through the front heel and bring the back leg forward into the next step.',
+  ],
+  mistakes: ['Taking too short a step.', 'Front knee collapsing inward.', 'Leaning forward too much.'],
+  tip: 'Keep your torso upright and your steps long.',
+},
+{
+  id: 'leg-curl',
+  name: 'Lying Leg Curl',
+  muscle: 'Legs',
+  secondary: ['Hamstrings'],
+  equipment: 'Leg Curl Machine',
+  level: 'Beginner',
+  sets: '3 x 10-15',
+  steps: [
+    'Lie face down and position the pad just above your heels.',
+    'Curl your heels toward your glutes.',
+    'Squeeze at the top, then lower slowly.',
+  ],
+  mistakes: ['Lifting the hips off the pad.', 'Dropping the weight fast.'],
+  tip: 'Take 2-3 seconds on the way down.',
+},
+{
+  id: 'calf-raise',
+  name: 'Standing Calf Raise',
+  muscle: 'Legs',
+  secondary: ['Calves'],
+  equipment: 'Machine or Step + Dumbbells',
+  level: 'Beginner',
+  sets: '4 x 12-20',
+  steps: [
+    'Stand with the balls of your feet on a raised edge.',
+    'Lower your heels for a full stretch.',
+    'Rise as high as you can onto your toes and pause.',
+  ],
+  mistakes: ['Bouncing.', 'Short range of motion.'],
+  tip: 'Pause 1-2 seconds at the top and the bottom.',
+},
+
+// ---------------- SHOULDERS ----------------
+{
+  id: 'ohp',
+  name: 'Overhead Press',
+  muscle: 'Shoulders',
+  secondary: ['Triceps', 'Upper Chest'],
+  equipment: 'Barbell',
+  level: 'Intermediate',
+  sets: '4 x 6-10',
+  steps: [
+    'Hold the bar at shoulder height, hands just outside shoulders.',
+    'Squeeze your glutes and brace your core.',
+    'Press the bar straight up, moving your head slightly back then forward.',
+    'Lower the bar back to your collarbone.',
+  ],
+  mistakes: ['Leaning back excessively.', 'Flaring the ribs.'],
+  tip: 'The bar should finish over the middle of your feet.',
+},
+{
+  id: 'db-shoulder-press',
+  name: 'Seated Dumbbell Shoulder Press',
+  muscle: 'Shoulders',
+  secondary: ['Triceps'],
+  equipment: 'Dumbbells, Bench',
+  level: 'Beginner',
+  sets: '3 x 8-12',
+  steps: [
+    'Sit upright with back support and dumbbells at shoulder height.',
+    'Press the weights overhead until arms are almost straight.',
+    'Lower slowly to ear level.',
+  ],
+  mistakes: ['Arching the lower back.', 'Using momentum.'],
+  tip: 'Keep your wrists stacked over your elbows.',
+},
+{
+  id: 'lateral-raise',
+  name: 'Dumbbell Lateral Raise',
+  muscle: 'Shoulders',
+  secondary: ['Side Delts'],
+  equipment: 'Dumbbells',
+  level: 'Beginner',
+  sets: '3 x 12-20',
+  steps: [
+    'Stand holding light dumbbells at your sides.',
+    'Raise your arms out to the sides up to shoulder height.',
+    'Lower slowly.',
+  ],
+  mistakes: ['Swinging the weights.', 'Lifting above shoulder height.', 'Shrugging.'],
+  tip: 'Lead with your elbows and use lighter weights.',
+},
+{
+  id: 'face-pull',
+  name: 'Face Pull',
+  muscle: 'Shoulders',
+  secondary: ['Rear Delts', 'Upper Back'],
+  equipment: 'Cable Machine, Rope',
+  level: 'Beginner',
+  sets: '3 x 12-20',
+  steps: [
+    'Set the cable at face height with a rope attachment.',
+    'Pull the rope toward your face, splitting the ends apart.',
+    'Squeeze your rear delts and return slowly.',
+  ],
+  mistakes: ['Going too heavy.', 'Leaning back to cheat the weight.'],
+  tip: 'Great for shoulder health and posture.',
+},
+{
+  id: 'rear-delt-fly',
+  name: 'Reverse Dumbbell Fly',
+  muscle: 'Shoulders',
+  secondary: ['Rear Delts', 'Upper Back'],
+  equipment: 'Dumbbells',
+  level: 'Beginner',
+  sets: '3 x 12-15',
+  steps: [
+    'Hinge forward with a flat back, dumbbells hanging below you.',
+    'Raise your arms out to the sides with slightly bent elbows.',
+    'Squeeze at the top and lower slowly.',
+  ],
+  mistakes: ['Using momentum.', 'Rounding the back.'],
+  tip: 'Light weights give the best results here.',
+},
+
+// ---------------- ARMS ----------------
+{
+  id: 'barbell-curl',
+  name: 'Barbell Curl',
+  muscle: 'Arms',
+  secondary: ['Biceps'],
+  equipment: 'Barbell or EZ Bar',
+  level: 'Beginner',
+  sets: '3 x 8-12',
+  steps: [
+    'Stand holding the bar with an underhand grip at shoulder width.',
+    'Curl the bar up while keeping your elbows by your sides.',
+    'Squeeze at the top, then lower slowly.',
+  ],
+  mistakes: ['Swinging the body.', 'Elbows drifting forward.'],
+  tip: 'An EZ bar is easier on the wrists.',
+},
+{
+  id: 'hammer-curl',
+  name: 'Hammer Curl',
+  muscle: 'Arms',
+  secondary: ['Biceps', 'Forearms'],
+  equipment: 'Dumbbells',
+  level: 'Beginner',
+  sets: '3 x 10-12',
+  steps: [
+    'Stand with dumbbells at your sides, palms facing each other.',
+    'Curl the weights up without rotating your wrists.',
+    'Lower slowly to full extension.',
+  ],
+  mistakes: ['Using momentum.', 'Moving the elbows.'],
+  tip: 'Builds the brachialis and forearms for thicker-looking arms.',
+},
+{
+  id: 'incline-curl',
+  name: 'Incline Dumbbell Curl',
+  muscle: 'Arms',
+  secondary: ['Biceps'],
+  equipment: 'Dumbbells, Incline Bench',
+  level: 'Intermediate',
+  sets: '3 x 10-12',
+  steps: [
+    'Sit back on a bench set to about 60 degrees, arms hanging straight down.',
+    'Curl the dumbbells up without moving your upper arms.',
+    'Lower slowly for a deep stretch.',
+  ],
+  mistakes: ['Lifting the elbows forward.', 'Going too heavy.'],
+  tip: 'The stretched position makes this great for biceps growth.',
+},
+{
+  id: 'tricep-pushdown',
+  name: 'Triceps Rope Pushdown',
+  muscle: 'Arms',
+  secondary: ['Triceps'],
+  equipment: 'Cable Machine, Rope',
+  level: 'Beginner',
+  sets: '3 x 10-15',
+  steps: [
+    'Stand facing the cable with elbows tucked at your sides.',
+    'Push the rope down until your arms are straight and spread the ends at the bottom.',
+    'Return slowly until your forearms are just past parallel.',
+  ],
+  mistakes: ['Leaning over the weight.', 'Elbows flaring out.'],
+  tip: 'Keep your upper arms still.',
+},
+{
+  id: 'skull-crusher',
+  name: 'EZ-Bar Skull Crusher',
+  muscle: 'Arms',
+  secondary: ['Triceps'],
+  equipment: 'EZ Bar, Bench',
+  level: 'Intermediate',
+  sets: '3 x 8-12',
+  steps: [
+    'Lie on a bench holding the bar above your chest, arms straight.',
+    'Bend your elbows and lower the bar toward your forehead.',
+    'Extend your arms back to the start.',
+  ],
+  mistakes: ['Flaring the elbows.', 'Using too much weight.'],
+  tip: 'Lower the bar slightly behind your head to keep tension on the triceps.',
+},
+
+// ---------------- CORE ----------------
+{
+  id: 'plank',
+  name: 'Plank',
+  muscle: 'Core',
+  secondary: ['Shoulders', 'Glutes'],
+  equipment: 'Bodyweight',
+  level: 'Beginner',
+  sets: '3 x 30-60 sec',
+  steps: [
+    'Rest on your forearms with elbows under your shoulders.',
+    'Form a straight line from head to heels.',
+    'Tighten your abs and glutes and hold.',
+  ],
+  mistakes: ['Hips sagging or piking up.', 'Holding your breath.'],
+  tip: 'Quality matters more than time: stop when your form breaks.',
+},
+{
+  id: 'hanging-leg-raise',
+  name: 'Hanging Leg Raise',
+  muscle: 'Core',
+  secondary: ['Hip Flexors'],
+  equipment: 'Pull-Up Bar',
+  level: 'Advanced',
+  sets: '3 x 8-15',
+  steps: [
+    'Hang from the bar with straight arms.',
+    'Raise your legs until they are parallel to the floor or higher.',
+    'Lower slowly without swinging.',
+  ],
+  mistakes: ['Swinging.', 'Using only the hip flexors with no ab tilt.'],
+  tip: 'Curl your pelvis up at the top to engage the abs.',
+},
+{
+  id: 'cable-crunch',
+  name: 'Cable Crunch',
+  muscle: 'Core',
+  secondary: ['Abs'],
+  equipment: 'Cable Machine, Rope',
+  level: 'Intermediate',
+  sets: '3 x 12-15',
+  steps: [
+    'Kneel facing the cable and hold the rope behind your head.',
+    'Crunch down by curling your ribs toward your hips.',
+    'Return slowly to the start.',
+  ],
+  mistakes: ['Pulling with the arms.', 'Sitting back onto the heels.'],
+  tip: 'Move your spine, not your hips.',
+},
+];
+
+export const muscleGroups: MuscleGroup[] = [
+'Chest',
+'Back',
+'Legs',
+'Shoulders',
+'Arms',
+'Core',
+];
+
+export const getByMuscle = (m: MuscleGroup) =>
+exercises.filter((e) => e.muscle === m);
